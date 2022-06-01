@@ -249,7 +249,7 @@ static void sf_c3_carmen_controller_HOST
   }
 
   _SFD_EML_CALL(0U, chartInstance->c3_sfEvent, 8);
-  if (CV_EML_IF(0, 1, 1, c3_error < 0.0F)) {
+  if (CV_EML_IF(0, 1, 1, c3_error < -500.0F)) {
     _SFD_EML_CALL(0U, chartInstance->c3_sfEvent, 9);
     c3_a = c3_error;
     c3_error_pon = c3_a * 0.01F;
@@ -602,10 +602,10 @@ extern void utFree(void*);
 
 void sf_c3_carmen_controller_HOST_get_check_sum(mxArray *plhs[])
 {
-  ((real_T *)mxGetPr((plhs[0])))[0] = (real_T)(3595266442U);
-  ((real_T *)mxGetPr((plhs[0])))[1] = (real_T)(75778429U);
-  ((real_T *)mxGetPr((plhs[0])))[2] = (real_T)(2979512986U);
-  ((real_T *)mxGetPr((plhs[0])))[3] = (real_T)(2665044076U);
+  ((real_T *)mxGetPr((plhs[0])))[0] = (real_T)(1296572283U);
+  ((real_T *)mxGetPr((plhs[0])))[1] = (real_T)(1119921837U);
+  ((real_T *)mxGetPr((plhs[0])))[2] = (real_T)(2084295155U);
+  ((real_T *)mxGetPr((plhs[0])))[3] = (real_T)(2577499933U);
 }
 
 mxArray *sf_c3_carmen_controller_HOST_get_autoinheritance_info(void)
@@ -617,7 +617,7 @@ mxArray *sf_c3_carmen_controller_HOST_get_autoinheritance_info(void)
     autoinheritanceFields);
 
   {
-    mxArray *mxChecksum = mxCreateString("wzodItqhxXP4aivaaQb4O");
+    mxArray *mxChecksum = mxCreateString("1Hfo8DUbpYZjA4ucaqjzq");
     mxSetField(mxAutoinheritanceInfo,0,"checksum",mxChecksum);
   }
 
@@ -851,9 +851,9 @@ static void chart_debug_initialization(SimStruct *S, unsigned int
 
         /* Initialization of MATLAB Function Model Coverage */
         _SFD_CV_INIT_EML(0,1,1,2,0,0,0,0,0,0,0);
-        _SFD_CV_INIT_EML_FCN(0,0,"eML_blk_kernel",0,-1,226);
+        _SFD_CV_INIT_EML_FCN(0,0,"eML_blk_kernel",0,-1,236);
         _SFD_CV_INIT_EML_IF(0,1,0,69,84,107,137);
-        _SFD_CV_INIT_EML_IF(0,1,1,143,155,191,225);
+        _SFD_CV_INIT_EML_IF(0,1,1,143,158,194,232);
         _SFD_SET_DATA_COMPILED_PROPS(0,SF_SINGLE,0,NULL,0,0,0,0.0,1.0,0,0,
           (MexFcnForType)c3_b_sf_marshallOut,(MexInFcnForType)NULL);
         _SFD_SET_DATA_COMPILED_PROPS(1,SF_SINGLE,0,NULL,0,0,0,0.0,1.0,0,0,
@@ -898,7 +898,7 @@ static void chart_debug_initialization(SimStruct *S, unsigned int
 
 static const char* sf_get_instance_specialization(void)
 {
-  return "DcjOOjMzk72UGp7DPGGPpG";
+  return "yTn4AbBWTEVzcRHVCGr3G";
 }
 
 static void sf_opaque_initialize_c3_carmen_controller_HOST(void
@@ -1081,10 +1081,10 @@ static void mdlSetWorkWidths_c3_carmen_controller_HOST(SimStruct *S)
   }
 
   ssSetOptions(S,ssGetOptions(S)|SS_OPTION_WORKS_WITH_CODE_REUSE);
-  ssSetChecksum0(S,(307540438U));
-  ssSetChecksum1(S,(321034186U));
-  ssSetChecksum2(S,(2926757578U));
-  ssSetChecksum3(S,(3453347922U));
+  ssSetChecksum0(S,(2532863862U));
+  ssSetChecksum1(S,(1068666207U));
+  ssSetChecksum2(S,(1217449506U));
+  ssSetChecksum3(S,(3668421826U));
   ssSetmdlDerivatives(S, NULL);
   ssSetExplicitFCSSCtrl(S,1);
   ssSupportsMultipleExecInstances(S,1);

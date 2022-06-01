@@ -330,7 +330,7 @@ static void c2_chartstep_c2_carmen_controller_HOST
     CV_EML_MCDC(0, 1, 0, TRUE);
     CV_EML_IF(0, 1, 0, TRUE);
     _SFD_EML_CALL(0U, chartInstance->c2_sfEvent, 4);
-    if (CV_EML_IF(0, 1, 1, c2_error < -50.0F)) {
+    if (CV_EML_IF(0, 1, 1, c2_error < -500.0F)) {
       _SFD_EML_CALL(0U, chartInstance->c2_sfEvent, 5);
       c2_ffw = 0.0F;
     } else {
@@ -985,10 +985,10 @@ extern void utFree(void*);
 
 void sf_c2_carmen_controller_HOST_get_check_sum(mxArray *plhs[])
 {
-  ((real_T *)mxGetPr((plhs[0])))[0] = (real_T)(652393086U);
-  ((real_T *)mxGetPr((plhs[0])))[1] = (real_T)(568381860U);
-  ((real_T *)mxGetPr((plhs[0])))[2] = (real_T)(2040129654U);
-  ((real_T *)mxGetPr((plhs[0])))[3] = (real_T)(869648026U);
+  ((real_T *)mxGetPr((plhs[0])))[0] = (real_T)(1775802299U);
+  ((real_T *)mxGetPr((plhs[0])))[1] = (real_T)(900355190U);
+  ((real_T *)mxGetPr((plhs[0])))[2] = (real_T)(1697276642U);
+  ((real_T *)mxGetPr((plhs[0])))[3] = (real_T)(2131763937U);
 }
 
 mxArray *sf_c2_carmen_controller_HOST_get_autoinheritance_info(void)
@@ -1000,7 +1000,7 @@ mxArray *sf_c2_carmen_controller_HOST_get_autoinheritance_info(void)
     autoinheritanceFields);
 
   {
-    mxArray *mxChecksum = mxCreateString("7iLTef9MNcnG4AEce3XUPE");
+    mxArray *mxChecksum = mxCreateString("Kl3BWnDapDzoopZqOcf8VC");
     mxSetField(mxAutoinheritanceInfo,0,"checksum",mxChecksum);
   }
 
@@ -1234,11 +1234,11 @@ static void chart_debug_initialization(SimStruct *S, unsigned int
 
         /* Initialization of MATLAB Function Model Coverage */
         _SFD_CV_INIT_EML(0,1,1,4,0,0,0,0,0,2,1);
-        _SFD_CV_INIT_EML_FCN(0,0,"eML_blk_kernel",0,-1,522);
-        _SFD_CV_INIT_EML_IF(0,1,0,101,147,300,518);
-        _SFD_CV_INIT_EML_IF(0,1,1,155,171,207,252);
-        _SFD_CV_INIT_EML_IF(0,1,2,313,343,380,510);
-        _SFD_CV_INIT_EML_IF(0,1,3,380,400,464,510);
+        _SFD_CV_INIT_EML_FCN(0,0,"eML_blk_kernel",0,-1,523);
+        _SFD_CV_INIT_EML_IF(0,1,0,101,147,301,519);
+        _SFD_CV_INIT_EML_IF(0,1,1,155,172,208,253);
+        _SFD_CV_INIT_EML_IF(0,1,2,314,344,381,511);
+        _SFD_CV_INIT_EML_IF(0,1,3,381,401,465,511);
 
         {
           static int condStart[] = { 106, 125 };
@@ -1295,7 +1295,7 @@ static void chart_debug_initialization(SimStruct *S, unsigned int
 
 static const char* sf_get_instance_specialization(void)
 {
-  return "yCekfAu4GAlTLfVUVAUlZ";
+  return "dROkeEXU0vsN3hMsL10ChH";
 }
 
 static void sf_opaque_initialize_c2_carmen_controller_HOST(void
@@ -1479,10 +1479,10 @@ static void mdlSetWorkWidths_c2_carmen_controller_HOST(SimStruct *S)
   }
 
   ssSetOptions(S,ssGetOptions(S)|SS_OPTION_WORKS_WITH_CODE_REUSE);
-  ssSetChecksum0(S,(2807393955U));
-  ssSetChecksum1(S,(2140604794U));
-  ssSetChecksum2(S,(759289647U));
-  ssSetChecksum3(S,(4189855662U));
+  ssSetChecksum0(S,(385034319U));
+  ssSetChecksum1(S,(985759801U));
+  ssSetChecksum2(S,(2045186092U));
+  ssSetChecksum3(S,(2105406546U));
   ssSetmdlDerivatives(S, NULL);
   ssSetExplicitFCSSCtrl(S,1);
   ssSupportsMultipleExecInstances(S,1);

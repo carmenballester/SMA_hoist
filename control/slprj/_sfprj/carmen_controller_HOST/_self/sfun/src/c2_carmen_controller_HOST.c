@@ -41,8 +41,6 @@ static void finalize_c2_carmen_controller_HOST
   (SFc2_carmen_controller_HOSTInstanceStruct *chartInstance);
 static void sf_c2_carmen_controller_HOST
   (SFc2_carmen_controller_HOSTInstanceStruct *chartInstance);
-static void c2_chartstep_c2_carmen_controller_HOST
-  (SFc2_carmen_controller_HOSTInstanceStruct *chartInstance);
 static void initSimStructsc2_carmen_controller_HOST
   (SFc2_carmen_controller_HOSTInstanceStruct *chartInstance);
 static void init_script_number_translation(uint32_T c2_machineNumber, uint32_T
@@ -168,37 +166,6 @@ static void finalize_c2_carmen_controller_HOST
 static void sf_c2_carmen_controller_HOST
   (SFc2_carmen_controller_HOSTInstanceStruct *chartInstance)
 {
-  real32_T *c2_amplitud;
-  real32_T *c2_error;
-  real32_T *c2_ffw;
-  real_T *c2_pid;
-  real32_T *c2_ref;
-  real32_T *c2_ref_ant;
-  c2_ref_ant = (real32_T *)ssGetInputPortSignal(chartInstance->S, 4);
-  c2_ref = (real32_T *)ssGetInputPortSignal(chartInstance->S, 3);
-  c2_pid = (real_T *)ssGetInputPortSignal(chartInstance->S, 2);
-  c2_ffw = (real32_T *)ssGetOutputPortSignal(chartInstance->S, 1);
-  c2_error = (real32_T *)ssGetInputPortSignal(chartInstance->S, 1);
-  c2_amplitud = (real32_T *)ssGetInputPortSignal(chartInstance->S, 0);
-  _SFD_SYMBOL_SCOPE_PUSH(0U, 0U);
-  _sfTime_ = (real_T)ssGetT(chartInstance->S);
-  _SFD_CC_CALL(CHART_ENTER_SFUNCTION_TAG, 0U, chartInstance->c2_sfEvent);
-  _SFD_DATA_RANGE_CHECK((real_T)*c2_amplitud, 0U);
-  _SFD_DATA_RANGE_CHECK((real_T)*c2_error, 1U);
-  _SFD_DATA_RANGE_CHECK((real_T)*c2_ffw, 2U);
-  _SFD_DATA_RANGE_CHECK(*c2_pid, 3U);
-  _SFD_DATA_RANGE_CHECK((real_T)*c2_ref, 4U);
-  _SFD_DATA_RANGE_CHECK((real_T)*c2_ref_ant, 5U);
-  chartInstance->c2_sfEvent = CALL_EVENT;
-  c2_chartstep_c2_carmen_controller_HOST(chartInstance);
-  _SFD_SYMBOL_SCOPE_POP();
-  _SFD_CHECK_FOR_STATE_INCONSISTENCY(_carmen_controller_HOSTMachineNumber_,
-    chartInstance->chartNumber, chartInstance->instanceNumber);
-}
-
-static void c2_chartstep_c2_carmen_controller_HOST
-  (SFc2_carmen_controller_HOSTInstanceStruct *chartInstance)
-{
   real32_T c2_hoistedGlobal;
   real32_T c2_b_hoistedGlobal;
   real_T c2_c_hoistedGlobal;
@@ -217,21 +184,17 @@ static void c2_chartstep_c2_carmen_controller_HOST
   real32_T c2_y;
   real32_T c2_b_a;
   real32_T c2_b_y;
-  real32_T c2_c_a;
-  real32_T c2_c_y;
-  real32_T c2_d_a;
-  real32_T c2_d_y;
   real32_T c2_x;
   real32_T c2_b_x;
-  real32_T c2_e_y;
+  real32_T c2_c_y;
   real32_T c2_b;
-  real32_T c2_f_y;
+  real32_T c2_d_y;
   real32_T c2_varargin_2;
   real32_T c2_varargin_3;
-  real32_T c2_g_y;
-  real32_T c2_h_y;
+  real32_T c2_e_y;
+  real32_T c2_f_y;
   real32_T c2_yk;
-  real32_T c2_i_y;
+  real32_T c2_g_y;
   real32_T c2_b_b;
   boolean_T c2_p;
   real32_T *c2_b_ref_ant;
@@ -247,6 +210,16 @@ static void c2_chartstep_c2_carmen_controller_HOST
   c2_b_ffw = (real32_T *)ssGetOutputPortSignal(chartInstance->S, 1);
   c2_b_error = (real32_T *)ssGetInputPortSignal(chartInstance->S, 1);
   c2_b_amplitud = (real32_T *)ssGetInputPortSignal(chartInstance->S, 0);
+  _SFD_SYMBOL_SCOPE_PUSH(0U, 0U);
+  _sfTime_ = (real_T)ssGetT(chartInstance->S);
+  _SFD_CC_CALL(CHART_ENTER_SFUNCTION_TAG, 0U, chartInstance->c2_sfEvent);
+  _SFD_DATA_RANGE_CHECK((real_T)*c2_b_amplitud, 0U);
+  _SFD_DATA_RANGE_CHECK((real_T)*c2_b_error, 1U);
+  _SFD_DATA_RANGE_CHECK((real_T)*c2_b_ffw, 2U);
+  _SFD_DATA_RANGE_CHECK(*c2_b_pid, 3U);
+  _SFD_DATA_RANGE_CHECK((real_T)*c2_b_ref, 4U);
+  _SFD_DATA_RANGE_CHECK((real_T)*c2_b_ref_ant, 5U);
+  chartInstance->c2_sfEvent = CALL_EVENT;
   _SFD_CC_CALL(CHART_ENTER_DURING_FUNCTION_TAG, 0U, chartInstance->c2_sfEvent);
   c2_hoistedGlobal = *c2_b_amplitud;
   c2_b_hoistedGlobal = *c2_b_error;
@@ -287,11 +260,7 @@ static void c2_chartstep_c2_carmen_controller_HOST
       CV_EML_MCDC(0, 1, 0, FALSE);
       CV_EML_IF(0, 1, 0, FALSE);
       _SFD_EML_CALL(0U, chartInstance->c2_sfEvent, 12);
-      c2_c_a = -c2_amplitud;
-      c2_c_y = c2_c_a * 2.0F;
-      c2_d_a = c2_c_y;
-      c2_d_y = c2_d_a * 0.037F;
-      if (CV_EML_IF(0, 1, 2, c2_error < c2_d_y)) {
+      if (CV_EML_IF(0, 1, 2, c2_error < -500.0F)) {
         _SFD_EML_CALL(0U, chartInstance->c2_sfEvent, 13);
         c2_ffw = 0.0F;
       } else {
@@ -300,21 +269,21 @@ static void c2_chartstep_c2_carmen_controller_HOST
           _SFD_EML_CALL(0U, chartInstance->c2_sfEvent, 15);
           c2_x = c2_error;
           c2_b_x = c2_x;
-          c2_e_y = muSingleScalarAbs(c2_b_x);
-          c2_b = c2_e_y;
-          c2_f_y = 0.003F * c2_b;
-          c2_varargin_2 = 3.0F - c2_f_y;
+          c2_c_y = muSingleScalarAbs(c2_b_x);
+          c2_b = c2_c_y;
+          c2_d_y = 0.003F * c2_b;
+          c2_varargin_2 = 3.0F - c2_d_y;
           c2_varargin_3 = c2_varargin_2;
-          c2_g_y = c2_varargin_3;
-          c2_h_y = c2_g_y;
+          c2_e_y = c2_varargin_3;
+          c2_f_y = c2_e_y;
           c2_eml_scalar_eg(chartInstance);
-          c2_yk = c2_h_y;
-          c2_i_y = c2_yk;
+          c2_yk = c2_f_y;
+          c2_g_y = c2_yk;
           c2_eml_scalar_eg(chartInstance);
-          c2_b_b = c2_i_y;
+          c2_b_b = c2_g_y;
           c2_p = (0.0F < c2_b_b);
           if (c2_p) {
-            c2_ffw = c2_i_y;
+            c2_ffw = c2_g_y;
           } else {
             c2_ffw = 0.0F;
           }
@@ -330,7 +299,7 @@ static void c2_chartstep_c2_carmen_controller_HOST
     CV_EML_MCDC(0, 1, 0, TRUE);
     CV_EML_IF(0, 1, 0, TRUE);
     _SFD_EML_CALL(0U, chartInstance->c2_sfEvent, 4);
-    if (CV_EML_IF(0, 1, 1, c2_error < -500.0F)) {
+    if (CV_EML_IF(0, 1, 1, c2_error < -50.0F)) {
       _SFD_EML_CALL(0U, chartInstance->c2_sfEvent, 5);
       c2_ffw = 0.0F;
     } else {
@@ -343,6 +312,9 @@ static void c2_chartstep_c2_carmen_controller_HOST
   _SFD_SYMBOL_SCOPE_POP();
   *c2_b_ffw = c2_ffw;
   _SFD_CC_CALL(EXIT_OUT_OF_FUNCTION_TAG, 0U, chartInstance->c2_sfEvent);
+  _SFD_SYMBOL_SCOPE_POP();
+  _SFD_CHECK_FOR_STATE_INCONSISTENCY(_carmen_controller_HOSTMachineNumber_,
+    chartInstance->chartNumber, chartInstance->instanceNumber);
 }
 
 static void initSimStructsc2_carmen_controller_HOST
@@ -985,10 +957,10 @@ extern void utFree(void*);
 
 void sf_c2_carmen_controller_HOST_get_check_sum(mxArray *plhs[])
 {
-  ((real_T *)mxGetPr((plhs[0])))[0] = (real_T)(1775802299U);
-  ((real_T *)mxGetPr((plhs[0])))[1] = (real_T)(900355190U);
-  ((real_T *)mxGetPr((plhs[0])))[2] = (real_T)(1697276642U);
-  ((real_T *)mxGetPr((plhs[0])))[3] = (real_T)(2131763937U);
+  ((real_T *)mxGetPr((plhs[0])))[0] = (real_T)(3152462143U);
+  ((real_T *)mxGetPr((plhs[0])))[1] = (real_T)(3636966964U);
+  ((real_T *)mxGetPr((plhs[0])))[2] = (real_T)(4196854631U);
+  ((real_T *)mxGetPr((plhs[0])))[3] = (real_T)(999271926U);
 }
 
 mxArray *sf_c2_carmen_controller_HOST_get_autoinheritance_info(void)
@@ -1000,7 +972,7 @@ mxArray *sf_c2_carmen_controller_HOST_get_autoinheritance_info(void)
     autoinheritanceFields);
 
   {
-    mxArray *mxChecksum = mxCreateString("Kl3BWnDapDzoopZqOcf8VC");
+    mxArray *mxChecksum = mxCreateString("cYZAxioPxPYBU59gol2pQG");
     mxSetField(mxAutoinheritanceInfo,0,"checksum",mxChecksum);
   }
 
@@ -1234,11 +1206,11 @@ static void chart_debug_initialization(SimStruct *S, unsigned int
 
         /* Initialization of MATLAB Function Model Coverage */
         _SFD_CV_INIT_EML(0,1,1,4,0,0,0,0,0,2,1);
-        _SFD_CV_INIT_EML_FCN(0,0,"eML_blk_kernel",0,-1,523);
-        _SFD_CV_INIT_EML_IF(0,1,0,101,147,301,519);
-        _SFD_CV_INIT_EML_IF(0,1,1,155,172,208,253);
-        _SFD_CV_INIT_EML_IF(0,1,2,314,344,381,511);
-        _SFD_CV_INIT_EML_IF(0,1,3,381,401,465,511);
+        _SFD_CV_INIT_EML_FCN(0,0,"eML_blk_kernel",0,-1,509);
+        _SFD_CV_INIT_EML_IF(0,1,0,101,147,300,505);
+        _SFD_CV_INIT_EML_IF(0,1,1,155,171,207,252);
+        _SFD_CV_INIT_EML_IF(0,1,2,313,330,367,497);
+        _SFD_CV_INIT_EML_IF(0,1,3,367,387,451,497);
 
         {
           static int condStart[] = { 106, 125 };
@@ -1295,7 +1267,7 @@ static void chart_debug_initialization(SimStruct *S, unsigned int
 
 static const char* sf_get_instance_specialization(void)
 {
-  return "dROkeEXU0vsN3hMsL10ChH";
+  return "2jn648IA4ZD4l5G4oiTvP";
 }
 
 static void sf_opaque_initialize_c2_carmen_controller_HOST(void
@@ -1479,10 +1451,10 @@ static void mdlSetWorkWidths_c2_carmen_controller_HOST(SimStruct *S)
   }
 
   ssSetOptions(S,ssGetOptions(S)|SS_OPTION_WORKS_WITH_CODE_REUSE);
-  ssSetChecksum0(S,(385034319U));
-  ssSetChecksum1(S,(985759801U));
-  ssSetChecksum2(S,(2045186092U));
-  ssSetChecksum3(S,(2105406546U));
+  ssSetChecksum0(S,(52693990U));
+  ssSetChecksum1(S,(3682091084U));
+  ssSetChecksum2(S,(1296123811U));
+  ssSetChecksum3(S,(3770585837U));
   ssSetmdlDerivatives(S, NULL);
   ssSetExplicitFCSSCtrl(S,1);
   ssSupportsMultipleExecInstances(S,1);

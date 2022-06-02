@@ -110,10 +110,10 @@ unsigned int sf_carmen_controller_HOST_process_check_sum_call( int nlhs, mxArray
       return 0;
     }
   } else {
-    ((real_T *)mxGetPr((plhs[0])))[0] = (real_T)(2941527059U);
-    ((real_T *)mxGetPr((plhs[0])))[1] = (real_T)(216830295U);
-    ((real_T *)mxGetPr((plhs[0])))[2] = (real_T)(293373159U);
-    ((real_T *)mxGetPr((plhs[0])))[3] = (real_T)(3187415172U);
+    ((real_T *)mxGetPr((plhs[0])))[0] = (real_T)(2475146756U);
+    ((real_T *)mxGetPr((plhs[0])))[1] = (real_T)(1894226461U);
+    ((real_T *)mxGetPr((plhs[0])))[2] = (real_T)(574140665U);
+    ((real_T *)mxGetPr((plhs[0])))[3] = (real_T)(4022448458U);
   }
 
   return 1;
@@ -151,7 +151,7 @@ unsigned int sf_carmen_controller_HOST_autoinheritance_info( int nlhs, mxArray *
     switch (chartFileNumber) {
      case 2:
       {
-        if (strcmp(aiChksum, "Kl3BWnDapDzoopZqOcf8VC") == 0) {
+        if (strcmp(aiChksum, "cYZAxioPxPYBU59gol2pQG") == 0) {
           extern mxArray *sf_c2_carmen_controller_HOST_get_autoinheritance_info
             (void);
           plhs[0] = sf_c2_carmen_controller_HOST_get_autoinheritance_info();
@@ -164,7 +164,7 @@ unsigned int sf_carmen_controller_HOST_autoinheritance_info( int nlhs, mxArray *
 
      case 3:
       {
-        if (strcmp(aiChksum, "1Hfo8DUbpYZjA4ucaqjzq") == 0) {
+        if (strcmp(aiChksum, "MERWgoAEOqmLMc2oLmmQLC") == 0) {
           extern mxArray *sf_c3_carmen_controller_HOST_get_autoinheritance_info
             (void);
           plhs[0] = sf_c3_carmen_controller_HOST_get_autoinheritance_info();
@@ -269,7 +269,7 @@ unsigned int sf_carmen_controller_HOST_third_party_uses_info( int nlhs, mxArray 
     switch (chartFileNumber) {
      case 2:
       {
-        if (strcmp(tpChksum, "dROkeEXU0vsN3hMsL10ChH") == 0) {
+        if (strcmp(tpChksum, "2jn648IA4ZD4l5G4oiTvP") == 0) {
           extern mxArray *sf_c2_carmen_controller_HOST_third_party_uses_info
             (void);
           plhs[0] = sf_c2_carmen_controller_HOST_third_party_uses_info();
@@ -279,7 +279,7 @@ unsigned int sf_carmen_controller_HOST_third_party_uses_info( int nlhs, mxArray 
 
      case 3:
       {
-        if (strcmp(tpChksum, "yTn4AbBWTEVzcRHVCGr3G") == 0) {
+        if (strcmp(tpChksum, "PhUTxKLTFiNKVtJsGZUsLE") == 0) {
           extern mxArray *sf_c3_carmen_controller_HOST_third_party_uses_info
             (void);
           plhs[0] = sf_c3_carmen_controller_HOST_third_party_uses_info();
@@ -317,7 +317,7 @@ unsigned int sf_carmen_controller_HOST_updateBuildInfo_args_info( int nlhs,
     switch (chartFileNumber) {
      case 2:
       {
-        if (strcmp(tpChksum, "dROkeEXU0vsN3hMsL10ChH") == 0) {
+        if (strcmp(tpChksum, "2jn648IA4ZD4l5G4oiTvP") == 0) {
           extern mxArray *sf_c2_carmen_controller_HOST_updateBuildInfo_args_info
             (void);
           plhs[0] = sf_c2_carmen_controller_HOST_updateBuildInfo_args_info();
@@ -327,7 +327,7 @@ unsigned int sf_carmen_controller_HOST_updateBuildInfo_args_info( int nlhs,
 
      case 3:
       {
-        if (strcmp(tpChksum, "yTn4AbBWTEVzcRHVCGr3G") == 0) {
+        if (strcmp(tpChksum, "PhUTxKLTFiNKVtJsGZUsLE") == 0) {
           extern mxArray *sf_c3_carmen_controller_HOST_updateBuildInfo_args_info
             (void);
           plhs[0] = sf_c3_carmen_controller_HOST_updateBuildInfo_args_info();

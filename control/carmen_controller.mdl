@@ -1,5 +1,5 @@
 Model {
-  Name			  "carmen_controller_forced"
+  Name			  "carmen_controller"
   Version		  8.2
   MdlSubVersion		  0
   SavedCharacterEncoding  "windows-1252"
@@ -18,7 +18,7 @@ Model {
       Type		      "Cell"
       Dimension		      2
       Cell		      "HDLSubsystem"
-      Cell		      "carmen_controller_forced"
+      Cell		      "carmen_controller"
       PropName		      "mdlProps"
     }
   }
@@ -79,7 +79,7 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "Cristina"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue May 31 13:24:16 2022"
+  LastModifiedDate	  "Fri Jun 17 11:58:05 2022"
   RTWModifiedTimeStamp	  575904244
   ModelVersionFormat	  "1.%<AutoIncrement:126>"
   ConfigurationManager	  "none"
@@ -1062,7 +1062,7 @@ Model {
     }
   }
   System {
-    Name		    "carmen_controller_forced"
+    Name		    "carmen_controller"
     Location		    [-8, -8, 1288, 992]
     Open		    on
     ModelBrowserVisibility  off
@@ -2166,7 +2166,7 @@ Model {
 		    BlockType		    S-Function
 		    Name		    " SFunction "
 		    SID			    "59::23"
-		    Tag			    "Stateflow S-Function carmen_controller_forced 1"
+		    Tag			    "Stateflow S-Function carmen_controller 1"
 		    Ports		    [4, 4]
 		    Position		    [180, 102, 230, 203]
 		    ZOrder		    1
@@ -3098,7 +3098,7 @@ Model {
 		    "l_BB(GPIOA->ODR, 5)  /* Output pin */\n#define ControlLogicReadSensorSensorReadoutSelectSensorDigitalOutput3_A6 "
 		    "Peripheral_BB(GPIOA->ODR, 6)  /* Output pin */"
 		    sampletime		    "-1"
-		    sampletimestr	    "0"
+		    sampletimestr	    "0.002"
 		    blockid		    "ControlLogicReadSensorSensorReadoutSelectSensorDigitalOutput3"
 		    enablecustomportlabel   off
 		    globalinit		    off
@@ -3737,7 +3737,7 @@ Model {
 	      BlockType		      S-Function
 	      Name		      " SFunction "
 	      SID		      "369::18"
-	      Tag		      "Stateflow S-Function carmen_controller_forced 2"
+	      Tag		      "Stateflow S-Function carmen_controller 2"
 	      Ports		      [2, 2]
 	      Position		      [180, 100, 230, 160]
 	      ZOrder		      4
@@ -3870,7 +3870,7 @@ Model {
 	      BlockType		      S-Function
 	      Name		      " SFunction "
 	      SID		      "384::18"
-	      Tag		      "Stateflow S-Function carmen_controller_forced 3"
+	      Tag		      "Stateflow S-Function carmen_controller 3"
 	      Ports		      [2, 2]
 	      Position		      [180, 100, 230, 160]
 	      ZOrder		      4
@@ -4140,7 +4140,7 @@ Model {
 		Type			"edit"
 		Name			"sampletimestr"
 		Prompt			"Compiled sample time (sec) in string"
-		Value			"0"
+		Value			"0.002"
 		Evaluate		"off"
 		Tunable			"off"
 		Enabled			"off"
@@ -4642,7 +4642,7 @@ Model {
 Stateflow {
   machine {
     id			    1
-    name		    "carmen_controller_forced"
+    name		    "carmen_controller"
     created		    "16-Oct-2014 09:45:04"
     isLibrary		    0
     firstTarget		    30

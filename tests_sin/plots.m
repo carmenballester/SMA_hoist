@@ -12,8 +12,11 @@ sandy_brown = [244 162 97]/255;
 burnt_sienna = [231 111 81]/255;
 
 % Define saturation
-sat = 0;
-max_time = 600.00;
+sat = 1;
+% max_time = 600.00;
+num_ciclos = 10;
+frec = 0.3;
+max_time = round(6.2814*num_ciclos/frec);
 
 if sat == true
     t = single(POSICION.time);

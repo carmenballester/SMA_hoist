@@ -1,6 +1,6 @@
 clc, clear, close all
 
-frec = 0.2;
+frec = 0.4;
 amplitud = 27000;
 
 

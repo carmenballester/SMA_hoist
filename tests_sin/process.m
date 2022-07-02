@@ -18,7 +18,7 @@ load(file_path);
 skoleboff = [25, 114, 120]/255;
 fuzzy_wuzzy = [211, 106, 95]/255;
 unbleached_silk = [255, 212, 202]/255;
-% charcoal = [38 70 83]/255;
+charcoal = [38 70 83]/255;
 % persian_green = [42 157 143]/255;
 % maize_crayola = [233 196 106]/255;
 % sandy_brown = [244 162 97]/255;

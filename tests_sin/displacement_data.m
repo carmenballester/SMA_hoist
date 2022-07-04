@@ -15,47 +15,32 @@ file_path = strcat(folder_path, file_name, '.mat');
 load(file_path);
 
 % Define colors
+outer_space_crayola = [40, 61, 59]/255;
 skoleboff = [25, 114, 120]/255;
-fuzzy_wuzzy = [211, 106, 95]/255;
-unbleached_silk = [255, 212, 202]/255;
-charcoal = [38 70 83]/255;
-% persian_green = [42 157 143]/255;
-% maize_crayola = [233 196 106]/255;
-% sandy_brown = [244 162 97]/255;
-% burnt_sienna = [231 111 81]/255;
+morning_blue = [131, 168, 166]/255;
+champagne_pink = [237, 221, 212]/255;
+new_york_pink = [217, 145, 133]/255;
+international_orange_golden = [196, 69, 54]/255;
+liver_organ = [119, 46, 37]/255;
 
-% Define saturation
-sat = input('Saturation? ');
+% Define variables
 max_time = 600.00;
-f = str2double(f_s);
-% num_ciclos = 10;
-% max_time = round(6.2814*num_ciclos/f);
 
-if sat
-    t = single(POSICION.time);
-    t = single(POSICION.time(1:find(t==max_time)));
-    pos = POSICION.signals.values(1:find(t==max_time))*0.48*10^-4;
-    ref = REFERENCIA.signals.values(1:find(t==max_time))*0.48*10^-4;
-    c = CONTROL.signals.values(1:find(t==max_time));
-    int = INTENSIDAD.signals.values(1:find(t==max_time)) *5/4096;
-    e = ERROR.signals.values(1:find(t==max_time));
-    ep = ERROR_PONDERADO.signals.values(1:find(t==max_time));
-
-else
-    t = single(POSICION.time);
-    pos = POSICION.signals.values*0.48*10^-4;
-    ref = REFERENCIA.signals.values*0.48*10^-4;
-    c = CONTROL.signals.values;
-    int = INTENSIDAD.signals.values *5/4096;
-    e = ERROR.signals.values;
-    ep = ERROR_PONDERADO.signals.values;
-end
+t = single(POSICION.time);
+t = single(POSICION.time(1:find(t==max_time)));
+pos = POSICION.signals.values(1:find(t==max_time))*0.48*10^-4;
+ref = REFERENCIA.signals.values(1:find(t==max_time))*0.48*10^-4;
+c = CONTROL.signals.values(1:find(t==max_time));
+int = INTENSIDAD.signals.values(1:find(t==max_time)) *5/4096;
+e = ERROR.signals.values(1:find(t==max_time));
+ep = ERROR_PONDERADO.signals.values(1:find(t==max_time));
 
 %% COMPUTE RECOVERY FITTING
 % Get recovery values
 min_t = [];
 min_pos = [];
 
+f = str2double(f_s);
 T = single(round(1/f * 6.2814/2, 2));
 cicles = round((max_time/T)); 
  
@@ -88,15 +73,35 @@ fit_val = feval(fit_eq, t);
 %     'TolFun', 10e-10);
 
 %% PLOTS
-fig_pos = [10 5 16 13];
-pdf_size = [17 14];
+fig_w = 25;
+fig_h = 13;
+fig_pos = [10 5 fig_w fig_h];
+pdf_size = [fig_w+0.25 fig_h+0.25];
 
+% Cutdown plots
+sat = input('Saturation? ');
+
+if sat
+    num_cicles = 15;
+    limit_time = round(6.2814*num_cicles/f);
+    
+    % Change values for representation
+    t = t(1:find(t==limit_time));
+    pos = pos(1:find(t==limit_time));
+    ref = ref(1:find(t==limit_time));
+    c = c(1:find(t==limit_time));
+    int = int(1:find(t==limit_time)) *5/4096;
+    e = e(1:find(t==limit_time));
+    ep = ep(1:find(t==limit_time));
+    fit_val = feval(fit_eq, t);
+
+end
 % Plot position
 pos_plot = figure('Name','SMA Position Control','NumberTitle','off', 'Color', 'white', 'Units','centimeters', 'Position', fig_pos);
-plot(t, ref, '--', 'Color', unbleached_silk, 'LineWidth', 0.5);
+plot(t, ref, 'Color', champagne_pink, 'LineWidth', 0.5);
 hold on 
-plot(t, pos, 'Color', fuzzy_wuzzy, 'LineWidth', 0.5);
-plot(min_t, min_pos,'.', 'Color', skoleboff);%'MarkerSize', 5);
+plot(t, pos, 'Color', new_york_pink, 'LineWidth', 0.5);
+plot(min_t, min_pos, '.', 'Color', skoleboff);%'MarkerSize', 5);
 title('\fontsize{18} \bf SMA Position')
 xlabel('\fontsize{16}Time')
 ylabel('\fontsize{16}cm')
@@ -106,11 +111,11 @@ xlim([0, t(end)])
 
 % Plot recovery curve
 rec_plot = figure('Name','SMA Recovery Curve','NumberTitle','off', 'Color', 'white', 'Units','centimeters', 'Position', fig_pos);
-plot(t, ref, '--', 'Color', unbleached_silk, 'LineWidth', 0.5);
+plot(t, ref, 'Color', champagne_pink, 'LineWidth', 0.5);
 hold on 
-plot(t, pos, 'Color', fuzzy_wuzzy, 'LineWidth', 0.5);
+plot(t, pos, 'Color', new_york_pink, 'LineWidth', 0.5);
 plot(min_t, min_pos,'.', 'Color', skoleboff);%'MarkerSize', 5);
-plot(t,fit_val,'Color', skoleboff);
+plot(t,fit_val,'Color', morning_blue,'LineWidth', 1);
 title('\fontsize{18} \bf SMA Recovery Curve')
 xlabel('\fontsize{16}Time')
 ylabel('\fontsize{16}cm')
@@ -118,16 +123,17 @@ legend('Reference','Measured position','Recovery fitting curve','Location','sout
 grid on
 xlim([0, t(end)])
 
+pause;
 %% Export to PDF 
 export = input('Export? ');
 result_name = replace(file_name, '.', ',');
 
 if export
     % Position
-    set(pos_plot,'PaperSize',[17 14]);
+    set(pos_plot,'PaperSize',pdf_size);
     print(pos_plot, strcat(result_name, '_pos_rec'), '-dpdf');
     
     % Recovery
-    set(rec_plot,'PaperSize',[17 14]);
+    set(rec_plot,'PaperSize',pdf_size);
     print(rec_plot, strcat(result_name, '_rec'), '-dpdf');
 end

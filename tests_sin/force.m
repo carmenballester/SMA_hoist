@@ -47,19 +47,20 @@ for i=1:length(h)
 end
 
 %% PLOTS 
-fig_w = 25;
-fig_h = 13;
-fig_pos = [10 5 fig_w fig_h];
+fig_w = 37.5;
+fig_h = 19.5;
+fig_pos = [0 0 fig_w fig_h];
 pdf_size = [fig_w+0.25 fig_h+0.25];
 
-% Force max
 force_plot = figure('Name','Paraller Hoist SMA Actuator Forces','NumberTitle','off', 'Color', 'white', 'Units','centimeters', 'Position', fig_pos);
+sgtitle('\fontsize{18} \bf Load and hosit system relation')
+
+% Force max
 force_max_sb = subplot(1,2,1);
 plot(N,F_max)
 colororder(color_plot_F)
-title('\fontsize{18} \bf Maximum Force')
 xlabel('\fontsize{16}Number of hoist turns')
-ylabel('\fontsize{16}kg')
+ylabel('\fontsize{16}Heating pull force (kg)')
 legend('Single SMA Actuator','','','','','','', ...
        'Parallel Hoist SMA Actuator (8 wires)', ...
        'Parallel Hoist SMA Actuator (h wires)', ...
@@ -71,20 +72,18 @@ xlim([1, N(end)])
 force_rec_sb = subplot(1,2,2);
 plot(N,F_rec)
 colororder(color_plot_F)
-title('\fontsize{18} \bf Recovery Force')
 xlabel('\fontsize{16}Number of hoist turns')
-ylabel('\fontsize{16}kg')
+ylabel('\fontsize{16}Cooling deformation force (kg)')
 legend('Single SMA Actuator','','','','','','','Parallel Hoist SMA Actuator (8 wires)','Parallel Hoist SMA Actuator (h wires)','Location','northwest')
 grid off
 xlim([1, N(end)])
 
 %% Export to PDF 
 export = input('Export? ');
-result_name = 'bowden_comparison';
+result_name = 'force_comparison';
 
 if export
-    % Force
     set(force_plot,'PaperSize',pdf_size);
-    print(force_plot, strcat(result_name, '_force'), '-dpdf');
+    print(force_plot, result_name, '-dpdf');
     
 end

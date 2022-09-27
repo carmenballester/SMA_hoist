@@ -12,11 +12,15 @@ liver_organ = [119, 46, 37]/255;
 
 % Define physic variables
 N = 1:0.01:5; % Numero de vueltas del polipasto
+N_d = 1:1:5; % Numero de vueltas del polipasto discreto
 h = 0:1:12; % Numero de hilos del actuador
 n = 8; % My number of wires
 
 F_max = zeros(length(h), length(N)); % Force
 F_rec = zeros(length(h), length(N)); % Force
+
+F_max_d = zeros(length(h), length(N_d)); % Force
+F_rec_d = zeros(length(h), length(N_d)); % Force
 
 % Define graphic variables
 color_plot_F = zeros(length(h), 3);
@@ -25,6 +29,7 @@ color_plot_F = zeros(length(h), 3);
 % Maximum Force
 for i=1:length(h) 
     F_max(i,:) = 1.3*i./N;
+    F_max_d(i,:) = 1.3*i./N_d;
     if i == 1
         color_plot_F(i,:) = skoleboff(1,:);
     elseif i == n
@@ -37,6 +42,7 @@ end
 % Minimum Force
 for i=1:length(h) 
     F_rec(i,:) = 0.512*i.*N;
+    F_rec_d(i,:) = 0.512*i.*N_d;
     if i == 1
         color_plot_F(i,:) = skoleboff(1,:);
     elseif i == n
@@ -50,7 +56,7 @@ end
 fig_w = 37.5;
 fig_h = 19.5;
 fig_pos = [0 0 fig_w fig_h];
-pdf_size = [fig_w+0.25 fig_h+0.25];
+pdf_size = [fig_w-6 fig_h];
 
 force_plot = figure('Name','Paraller Hoist SMA Actuator Forces','NumberTitle','off', 'Color', 'white', 'Units','centimeters', 'Position', fig_pos);
 sgtitle('\fontsize{18} \bf Load and hosit system relation')
@@ -58,6 +64,8 @@ sgtitle('\fontsize{18} \bf Load and hosit system relation')
 % Force max
 force_max_sb = subplot(1,2,1);
 plot(N,F_max)
+% hold on
+% plot(N_d,F_max_d,'.')
 colororder(color_plot_F)
 xlabel('\fontsize{16}Number of hoist turns')
 ylabel('\fontsize{16}Heating pull force (kg)')

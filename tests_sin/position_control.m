@@ -58,7 +58,7 @@ f = str2double(f_s);
 sat = input('Saturation? ');
 
 if sat
-    num_cicles = 4;
+    num_cicles = 10;
     limit_time = round(6.2814*num_cicles/f);
     
     % Change values for representation

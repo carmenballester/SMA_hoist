@@ -4,4 +4,5 @@ tests_sin/test_8hilos_0.31d_30cm_3vueltas_37000us
 tests_sin/test_8hilos_0.31d_30cm_3vueltas_54000us_bad_control
 tests_sin/test_8hilos_0.31d_30cm_3vueltas_54000us_not_that_bad_control
 videos/
+*.ini
 

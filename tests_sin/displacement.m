@@ -60,7 +60,7 @@ strp = {['L = 33.3' newline 's = 3'], ['L = 100' newline 's = 3']};
 fig_w = 37.5;
 fig_h = 19.5;
 fig_pos = [0 0 fig_w fig_h];
-pdf_size = [fig_w+0.25 fig_h+0.25];
+pdf_size = [fig_w-6 fig_h];
 
 disp_plot = figure('Name','Parallel Hoist SMA Actuator Displacement','NumberTitle','off', 'Color', 'white', 'Units','centimeters', 'Position', fig_pos);
 sgtitle('\fontsize{18} \bf Displacement improvement using hoist system')

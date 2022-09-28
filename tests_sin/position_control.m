@@ -1,19 +1,40 @@
 % Plot results with controlled positions
 clear, clc, close all
 
-%% Load data
-% Get data parameters
-f_s = input('Frecuencia: ','s');
-m_s = input('Masa: ', 's');
+%% LOAD DATA
+signal_1 = position_control_get_data();
 
-% Define paths
-folder_path = 'G:\Mi unidad\SMA Carmen\polipasto_v2\tests_sin\test_8hilos_0.31d_30cm_3vueltas_54000us_good_control\';
-file_name = strcat(f_s, 'f_', m_s, 'kg');
-file_path = strcat(folder_path, file_name, '.mat');
+%% DEFINE VARIABLES
+% Cutdown plots
+f = str2double(signal_1.f_s);
+sat = input('Saturation? ');
 
-% Load specifyed data
-load(file_path);
+if sat
+    num_cicles = 10;
+    limit_time = round(6.2814*num_cicles/f);
+    
+    t = signal_1.t(1:find(signal_1.t==limit_time));
+    pos = signal_1.pos(1:find(t==limit_time));
+    ref = signal_1.ref(1:find(t==limit_time));
+    c = signal_1.c(1:find(t==limit_time));
+    int = signal_1.int(1:find(t==limit_time)) *5/4096;
+    e = signal_1.e(1:find(t==limit_time));
+    ep = signal_1.ep(1:find(t==limit_time));
 
+else
+    t = signal_1.t;
+    pos = signal_1.pos;
+    ref = signal_1.ref;
+    c = signal_1.c;
+    int = signal_1.int;
+    e = signal_1.e;
+    ep = signal_1.ep;
+end
+
+pos_nc = signal_1.pos_nc;
+t_nc = signal_1.t_nc;
+
+%% PLOTS
 % Define colors
 outer_space_crayola = [40, 61, 59]/255;
 skoleboff = [25, 114, 120]/255;
@@ -23,53 +44,11 @@ new_york_pink = [217, 145, 133]/255;
 international_orange_golden = [196, 69, 54]/255;
 liver_organ = [119, 46, 37]/255;
 
-% Define variables
-max_time = 600.00;
-
-t = single(POSICION.time);
-t = single(POSICION.time(1:find(t==max_time)));
-pos = POSICION.signals.values(1:find(t==max_time))*0.48*10^-4;
-ref = REFERENCIA.signals.values(1:find(t==max_time))*0.48*10^-4;
-c = CONTROL.signals.values(1:find(t==max_time));
-int = INTENSIDAD.signals.values(1:find(t==max_time)) *5/4096;
-e = ERROR.signals.values(1:find(t==max_time));
-ep = ERROR_PONDERADO.signals.values(1:find(t==max_time));
-
-% t = single(Posicion.time);
-% pos = Posicion.signals.values;
-% ref = referencia.signals.values(:,3);
-% c = control.signals.values(:,2);
-% ep = error_ponderado.signals.values;
-% e = ref-pos;
-
-% Get uncontrolled positions
-index = find(c == 0.0);
-pos_nc = pos(index);
-t_nc = t(index);
-
-%% PLOTS
+% Define figure properties
 fig_w = 25;
 fig_h = 13;
 fig_pos = [10 5 fig_w fig_h];
 pdf_size = [fig_w+0.25 fig_h+0.25];
-
-% Cutdown plots
-f = str2double(f_s);
-sat = input('Saturation? ');
-
-if sat
-    num_cicles = 10;
-    limit_time = round(6.2814*num_cicles/f);
-    
-    % Change values for representation
-    t = t(1:find(t==limit_time));
-    pos = pos(1:find(t==limit_time));
-    ref = ref(1:find(t==limit_time));
-    c = c(1:find(t==limit_time));
-    int = int(1:find(t==limit_time)) *5/4096;
-    e = e(1:find(t==limit_time));
-    ep = ep(1:find(t==limit_time));
-end
 
 % Plot position
 pos_plot = figure('Name','SMA Position Control','NumberTitle','off', 'Color', 'white', 'Units','centimeters', 'Position', fig_pos);
@@ -135,9 +114,10 @@ ylim([min(c) max(c)+10])
 % % ylim([0 5.5])
 
 pause;
+
 %% Export to PDF 
 export = input('Export? ');
-result_name = replace(file_name, '.', ',');
+result_name = replace(signal_1.file_name, '.', ',');
 
 if export
     % Position

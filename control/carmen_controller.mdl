@@ -7,7 +7,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.126"
+    ComputedModelVersion    "1.127"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -43,7 +43,7 @@ Model {
       $ObjectID		      3
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [-8.0, -8.0, 1296.0, 1000.0]
+      Location		      [-8.0, -8.0, 1936.0, 1056.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		4
@@ -67,7 +67,7 @@ Model {
 	IsActive		[1]
 	ViewObjType		"SimulinkTopLevel"
 	LoadSaveID		"0"
-	Extents			[1246.0, 855.0]
+	Extents			[1886.0, 911.0]
 	ZoomFactor		[1.0]
 	Offset			[13.328125402331352, 10.000000000000114]
       }
@@ -79,9 +79,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "Cristina"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Fri Jun 17 11:58:05 2022"
-  RTWModifiedTimeStamp	  575904244
-  ModelVersionFormat	  "1.%<AutoIncrement:126>"
+  LastModifiedDate	  "Fri Nov 18 14:12:48 2022"
+  RTWModifiedTimeStamp	  590681536
+  ModelVersionFormat	  "1.%<AutoIncrement:127>"
   ConfigurationManager	  "none"
   SampleTimeColors	  on
   SampleTimeAnnotations	  off
@@ -1063,7 +1063,7 @@ Model {
   }
   System {
     Name		    "carmen_controller"
-    Location		    [-8, -8, 1288, 992]
+    Location		    [-8, -8, 1928, 1048]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -1095,7 +1095,7 @@ Model {
       MaskHideContents	      off
       System {
 	Name			"Control Logic"
-	Location		[-8, -8, 1288, 992]
+	Location		[-8, -8, 1928, 1048]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -1125,7 +1125,7 @@ Model {
 	  MaskHideContents	  off
 	  System {
 	    Name		    "Read Sensor"
-	    Location		    [-8, -8, 1288, 992]
+	    Location		    [-8, -8, 1928, 1048]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -1155,7 +1155,7 @@ Model {
 	      MaskHideContents	      off
 	      System {
 		Name			"Calculate the SMA real position"
-		Location		[-8, -8, 1288, 992]
+		Location		[-8, -8, 1928, 1048]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -1626,7 +1626,7 @@ Model {
 		  MaskHideContents	  off
 		  System {
 		    Name		    "Calculate Offset"
-		    Location		    [-8, -8, 1288, 992]
+		    Location		    [-8, -8, 1928, 1048]
 		    Open		    off
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
@@ -3623,7 +3623,7 @@ Model {
       MaskHideContents	      off
       System {
 	Name			"PWM Output"
-	Location		[-8, -8, 1288, 992]
+	Location		[-8, -8, 1928, 1048]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -4140,7 +4140,7 @@ Model {
 		Type			"edit"
 		Name			"sampletimestr"
 		Prompt			"Compiled sample time (sec) in string"
-		Value			"0.002"
+		Value			"0"
 		Evaluate		"off"
 		Tunable			"off"
 		Enabled			"off"
@@ -4407,7 +4407,7 @@ Model {
       MaskHideContents	      off
       System {
 	Name			"USB Receiver"
-	Location		[-8, -8, 1288, 992]
+	Location		[-8, -8, 1928, 1048]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -4504,7 +4504,7 @@ Model {
       MaskHideContents	      off
       System {
 	Name			"USB Send"
-	Location		[-8, -8, 1288, 992]
+	Location		[-8, -8, 1928, 1048]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200

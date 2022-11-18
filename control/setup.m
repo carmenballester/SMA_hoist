@@ -1,7 +1,7 @@
 clc, clear, close all
 
 frec = 0.1;
-amplitud = 20000;
+amplitud = 27000;
 
 
 % 

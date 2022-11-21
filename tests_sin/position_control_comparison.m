@@ -73,94 +73,104 @@ champagne_pink = [237, 221, 212]/255;
 new_york_pink = [217, 145, 133]/255;
 international_orange_golden = [196, 69, 54]/255;
 liver_organ = [119, 46, 37]/255;
+raisin_black = [39, 38, 53]/255;
 
 % Define figure properties
-fig_w = 25;
-fig_h = 13;
-fig_pos = [10 5 fig_w fig_h];
-pdf_size = [fig_w+0.25 fig_h+0.25];
+fig_w = 40;
+fig_h = 15;
+fig_pos = [0 0 fig_w fig_h];
+pdf_size = [fig_w+0.05 fig_h+0.05];
 
 % Plot position -----------------------------------------------------------
 pos_plot = figure('Name','SMA Position Control','NumberTitle','off', 'Color', 'white', 'Units','centimeters', 'Position', fig_pos);
-sgtitle('\fontsize{14} \bf SMA Response')
+sgtitle('\fontsize{22} \bf SMA Response Comparison (different frequencies)')
 
-subplot(2,1,1);
+subplot(1,2,1);
 plot(t_1, ref_1, 'Color', international_orange_golden, 'LineWidth', 1);
 hold on 
 plot(t_1, pos_1, 'Color',skoleboff, 'LineWidth', 1);
-title(strcat('\fontsize{12}\rmf = ',signal_1.f_s,' rad/s; m = ', signal_1.m_s,' kg'))
-xlabel('\fontsize{10}Time (s)')
-ylabel('\fontsize{10}Position (cm)')
-legend('Reference','Measured position','Location','southeast')
+title(strcat('\fontsize{18}\rmPosition for: f = ',signal_1.f_s,' rad/s; m = ', signal_1.m_s,' kg'))
+xlabel('\fontsize{16}Time (s)')
+ylabel('\fontsize{16}Position (cm)')
+legend('Reference','Measured position','Location','southeast','FontSize', 14)
 grid on
 xlim([0, t_1(end)])
 
-subplot(2,1,2)
+subplot(1,2,2)
 plot(t_2, ref_2, 'Color', international_orange_golden, 'LineWidth', 1);
 hold on 
 plot(t_2, pos_2, 'Color',skoleboff, 'LineWidth', 1);
-title(strcat('\fontsize{12}\rmf = ',signal_2.f_s,' rad/s; m = ', signal_2.m_s,' kg'))
-xlabel('\fontsize{10}Time (s)')
-ylabel('\fontsize{10}Position (cm)')
-%legend('Reference','Measured position','Location','southeast')
+title(strcat('\fontsize{18}\rmPosition for: f = ',signal_2.f_s,' rad/s; m = ', signal_2.m_s,' kg'))
+xlabel('\fontsize{16}Time (s)')
+ylabel('\fontsize{16}Position (cm)')
+legend('Reference','Measured position','Location','southeast','FontSize', 14)
 grid on
 xlim([0, t_2(end)])
 
-% Plot uncontrolled position-----------------------------------------------
-upos_plot = figure('Name','SMA Uncontrolled Positions','NumberTitle','off', 'Color', 'white', 'Units','centimeters', 'Position', fig_pos);
-sgtitle('\fontsize{14} \bf SMA Response')
-
-subplot(2,1,1);
-plot(t_1, ref_1, 'Color', international_orange_golden, 'LineWidth', 1);
-hold on 
-plot(t_1, pos_1, 'Color', skoleboff, 'LineWidth', 1);
-plot(t_nc_1, pos_nc_1, '.', 'Color', morning_blue, 'MarkerSize', 5);
-title(strcat('\fontsize{12}\rmf = ',signal_1.f_s,' rad/s; m = ', signal_1.m_s,' kg'))
-xlabel('\fontsize{10}Time (s)')
-ylabel('\fontsize{10}Position (cm)')
-legend('Reference','Measured position','Uncontrolled position','Location','southeast')
-grid on
-xlim([0, t_1(end)])
-
-subplot(2,1,2);
-plot(t_2, ref_2, 'Color', international_orange_golden, 'LineWidth', 1);
-hold on 
-plot(t_2, pos_2, 'Color', skoleboff, 'LineWidth', 1);
-plot(t_nc_2, pos_nc_2, '.', 'Color', morning_blue, 'MarkerSize', 5);
-title(strcat('\fontsize{12}\rmf = ',signal_2.f_s,' rad/s; m = ', signal_2.m_s,' kg'))
-xlabel('\fontsize{10}Time (s)')
-ylabel('\fontsize{10}Position (cm)')
-legend('Reference','Measured position','Uncontrolled position','Location','southeast')
-grid on
-xlim([0, t_2(end)])
+% % Plot uncontrolled position-----------------------------------------------
+% upos_plot = figure('Name','SMA Uncontrolled Positions','NumberTitle','off', 'Color', 'white', 'Units','centimeters', 'Position', fig_pos);
+% sgtitle('\fontsize{14} \bf SMA Response')
+% 
+% subplot(2,1,1);
+% plot(t_1, ref_1, 'Color', international_orange_golden, 'LineWidth', 1);
+% hold on 
+% plot(t_1, pos_1, 'Color', skoleboff, 'LineWidth', 1);
+% plot(t_nc_1, pos_nc_1, '.', 'Color', morning_blue, 'MarkerSize', 5);
+% title(strcat('\fontsize{12}\rmf = ',signal_1.f_s,' rad/s; m = ', signal_1.m_s,' kg'))
+% xlabel('\fontsize{10}Time (s)')
+% ylabel('\fontsize{10}Position (cm)')
+% legend('Reference','Measured position','Uncontrolled position','Location','southeast')
+% grid on
+% xlim([0, t_1(end)])
+% 
+% subplot(2,1,2);
+% plot(t_2, ref_2, 'Color', international_orange_golden, 'LineWidth', 1);
+% hold on 
+% plot(t_2, pos_2, 'Color', skoleboff, 'LineWidth', 1);
+% plot(t_nc_2, pos_nc_2, '.', 'Color', morning_blue, 'MarkerSize', 5);
+% title(strcat('\fontsize{12}\rmf = ',signal_2.f_s,' rad/s; m = ', signal_2.m_s,' kg'))
+% xlabel('\fontsize{10}Time (s)')
+% ylabel('\fontsize{10}Position (cm)')
+% legend('Reference','Measured position','Uncontrolled position','Location','southeast')
+% grid on
+% xlim([0, t_2(end)])
 
 % Plot error---------------------------------------------------------------
 err_plot = figure('Name','SMA Error','NumberTitle','off', 'Color', 'white', 'Units','centimeters', 'Position', fig_pos);
-sgtitle('\fontsize{14} \bf SMA Error')
-
-subplot(2,1,1);
-plot(t_1, c_1, 'Color', morning_blue, 'LineWidth', 1);
+sgtitle('\fontsize{22} \bf SMA Error')
+set(err_plot,'defaultAxesColorOrder',[0 0 0; 0 0 0]);
+subplot(1,2,1);
+yyaxis left
+plot(t_1, c_1, 'Color', raisin_black, 'LineWidth', 1);
+ylabel('\fontsize{16}Control (% PWM)')
+ylim([-500, 100]);
 hold on 
-plot(t_1, e_1*0.01, 'Color', new_york_pink, 'LineWidth', 1);
-plot(t_1, ep_1*0.01, 'Color', international_orange_golden, 'LineWidth', 0.5);
-title(strcat('\fontsize{12}\rmf = ',signal_1.f_s,' rad/s; m = ', signal_1.m_s,' kg'))
-xlabel('\fontsize{10}Time (s)')
-ylabel('\fontsize{10}Error (\mum)')
-legend('Control', 'Error','Weighted Error','Location','southeast')
+yyaxis right
+plot(t_1, e_1*0.01, 'Color', morning_blue, 'LineWidth', 1);
+plot(t_1, ep_1*0.01, 'LineStyle', '-', 'Color', international_orange_golden, 'LineWidth', 1);
+title(strcat('\fontsize{18}\rmError for: f = ',signal_1.f_s,' rad/s; m = ', signal_1.m_s,' kg'))
+xlabel('\fontsize{16}Time (s)')
+ylabel('\fontsize{16}Error (10^2\mum)')
+legend('Control', 'Error','Weighted Error','Location','southeast','FontSize', 14)
 grid on
 xlim([0, t_1(end)])
 
-subplot(2,1,2);
-plot(t_2, c_2, 'Color', morning_blue, 'LineWidth', 1);
+subplot(1,2,2);
+yyaxis left
+plot(t_2, c_2, 'Color', raisin_black, 'LineWidth', 1);
+ylabel('\fontsize{16}Control (% PWM)')
+ylim([-200, 100]);
 hold on 
-plot(t_2, e_2*0.01, 'Color', new_york_pink, 'LineWidth', 1);
-plot(t_2, ep_2*0.01, 'Color', international_orange_golden, 'LineWidth', 0.5);
-title(strcat('\fontsize{12}\rmf = ',signal_2.f_s,' rad/s; m = ', signal_2.m_s,' kg'))
-xlabel('\fontsize{10}Time (s)')
-ylabel('\fontsize{10}Error (\mum)')
-%legend('Control', 'Error','Weighted Error','Location','southeast')
+yyaxis right
+plot(t_2, e_2*0.01, 'Color', morning_blue, 'LineWidth', 1);
+plot(t_2, ep_2*0.01, 'LineStyle', '-' , 'Color', international_orange_golden, 'LineWidth', 1);
+title(strcat('\fontsize{18}\rmError for: f = ',signal_2.f_s,' rad/s; m = ', signal_2.m_s,' kg'))
+xlabel('\fontsize{16}Time (s)')
+ylabel('\fontsize{16}Error (10^20.\mum)')
+legend('Control', 'Error','Weighted Error','Location','southeast','FontSize', 14)
 grid on
 xlim([0, t_2(end)])
+ylim([-200, 100]);
 
 % % Plot control signal
 % control_plot = figure('Name','SMA Control Signal','NumberTitle','off', 'Color', 'white', 'Units','centimeters', 'Position', fig_pos);

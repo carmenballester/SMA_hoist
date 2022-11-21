@@ -54,12 +54,12 @@ end
 
 %% PLOTS 
 fig_w = 37.5;
-fig_h = 19.5;
+fig_h = 15;
 fig_pos = [0 0 fig_w fig_h];
 pdf_size = [fig_w-6 fig_h];
 
 force_plot = figure('Name','Paraller Hoist SMA Actuator Forces','NumberTitle','off', 'Color', 'white', 'Units','centimeters', 'Position', fig_pos);
-sgtitle('\fontsize{18} \bf Load and hosit system relation')
+sgtitle('\fontsize{22} \bf Load and hosit system relation')
 
 % Force max
 force_max_sb = subplot(1,2,1);
@@ -67,12 +67,13 @@ plot(N,F_max)
 % hold on
 % plot(N_d,F_max_d,'.')
 colororder(color_plot_F)
-xlabel('\fontsize{16}Number of hoist turns')
-ylabel('\fontsize{16}Heating pull force (kg)')
+xlabel('\fontsize{20}Number of hoist turns')
+ylabel('\fontsize{20}Heating pull force (kg)')
 legend('Single SMA Actuator','','','','','','', ...
        'Parallel Hoist SMA Actuator (8 wires)', ...
        'Parallel Hoist SMA Actuator (h wires)', ...
-       'Location','northwest')
+       'Location','northwest', ...
+        'FontSize', 14)
 grid off
 xlim([1, N(end)])
 
@@ -80,9 +81,13 @@ xlim([1, N(end)])
 force_rec_sb = subplot(1,2,2);
 plot(N,F_rec)
 colororder(color_plot_F)
-xlabel('\fontsize{16}Number of hoist turns')
-ylabel('\fontsize{16}Cooling deformation force (kg)')
-legend('Single SMA Actuator','','','','','','','Parallel Hoist SMA Actuator (8 wires)','Parallel Hoist SMA Actuator (h wires)','Location','northwest')
+xlabel('\fontsize{20}Number of hoist turns')
+ylabel('\fontsize{20}Cooling deformation force (kg)')
+legend('Single SMA Actuator','','','','','','', ...
+    'Parallel Hoist SMA Actuator (8 wires)', ...
+    'Parallel Hoist SMA Actuator (h wires)', ...
+    'Location','northwest', ...
+    'FontSize', 14)
 grid off
 xlim([1, N(end)])
 

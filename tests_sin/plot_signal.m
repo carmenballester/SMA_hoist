@@ -1,38 +1,25 @@
-% Plot results with controlled positions
-clear, clc, close all
-
-%% LOAD DATA
-signal_1 = get_signal_data();
+clc, close all
 
 %% DEFINE VARIABLES
 % Cutdown plots
-f = str2double(signal_1.f_s);
-sat = input('Saturation? ');
+f = frec;
 
-if sat
-    num_cicles = 10;
-    limit_time = round(6.2814*num_cicles/f);
-    
-    t = signal_1.t(1:find(signal_1.t==limit_time));
-    pos = signal_1.pos(1:find(t==limit_time));
-    ref = signal_1.ref(1:find(t==limit_time));
-    c = signal_1.c(1:find(t==limit_time));
-    int = signal_1.int(1:find(t==limit_time)) *5/4096;
-    e = signal_1.e(1:find(t==limit_time));
-    ep = signal_1.ep(1:find(t==limit_time));
 
-else
-    t = signal_1.t;
-    pos = signal_1.pos;
-    ref = signal_1.ref;
-    c = signal_1.c;
-    int = signal_1.int;
-    e = signal_1.e;
-    ep = signal_1.ep;
-end
+t = single(POSICION.time);
+max_time = t(end);
 
-pos_nc = signal_1.pos_nc;
-t_nc = signal_1.t_nc;
+t = single(POSICION.time(1:find(t==max_time)));
+pos = POSICION.signals.values(1:find(t==max_time))*0.48*10^-4;
+ref = REFERENCIA.signals.values(1:find(t==max_time))*0.48*10^-4;
+c = CONTROL.signals.values(1:find(t==max_time));
+int = INTENSIDAD.signals.values(1:find(t==max_time)) *5/4096;
+e = ERROR.signals.values(1:find(t==max_time));
+ep = ERROR_PONDERADO.signals.values(1:find(t==max_time));
+
+% Get uncontrolled positions
+index = find(c == 0.0);
+pos_nc = pos(index);
+t_nc = t(index);
 
 %% PLOTS
 % Define colors
@@ -112,31 +99,3 @@ ylim([min(c) max(c)+10])
 % grid on
 % xlim([0, t(end)])
 % % ylim([0 5.5])
-
-pause;
-
-%% Export to PDF 
-export = input('Export? ');
-result_name = replace(signal_1.file_name, '.', ',');
-
-if export
-    % Position
-    set(pos_plot,'PaperSize',pdf_size);
-    print(pos_plot, strcat(result_name, '_pos'), '-dpdf');
-    
-    % Uncontrolled position
-    set(upos_plot,'PaperSize',pdf_size);
-    print(upos_plot, strcat(result_name, '_upos'), '-dpdf');
-
-    % Error
-    set(err_plot,'PaperSize',pdf_size);
-    print(err_plot, strcat(result_name, '_err'), '-dpdf');
-
-%     % Control
-%     set(control_plot,'PaperSize',pdf_size;
-%     print(control_plot, strcat(result_name, '_control'), '-dpdf');
-% 
-%     % Intensity
-%     set(int_plot,'PaperSize',pdf_size);
-%     print(int_plot, strcat(result_name, '_int'), '-dpdf');
-end

@@ -58,12 +58,12 @@ yp = [3, s(1,a)];
 strp = {['L = 33.3' newline 's = 3'], ['L = 100' newline 's = 3']};
 %% PLOTS 
 fig_w = 37.5;
-fig_h = 19.5;
+fig_h = 15;
 fig_pos = [0 0 fig_w fig_h];
 pdf_size = [fig_w-6 fig_h];
 
 disp_plot = figure('Name','Parallel Hoist SMA Actuator Displacement','NumberTitle','off', 'Color', 'white', 'Units','centimeters', 'Position', fig_pos);
-sgtitle('\fontsize{18} \bf Displacement improvement using hoist system')
+sgtitle('\fontsize{22} \bf Displacement improvement using hoist system')
 
 % Displacement lineal
 subplot(1,2,2)
@@ -71,17 +71,17 @@ plot(l,s)
 hold on 
 plot(xp, yp, '--')
 plot(xp, yp, '.', MarkerSize=20)
-text(xp-11, yp+0.75, strp)
+text(xp-15, yp+0.75, strp, 'FontSize',14)
 % text(xp(2)-11, yp(2)+0.75, strp(2))
 colororder(color_plot_s)
-xlabel('\fontsize{16}SMA wire length')
-ylabel('\fontsize{16}Displacement (cm)')
+xlabel('\fontsize{20}SMA wire length')
+ylabel('\fontsize{20}Displacement (cm)')
 legend('Single SMA Actuator','', ...
        'Parallel Hoist SMA Actuator (3 turns)', ...
        'Parallel Hoist SMA Actuator (n turns)', ...
-       'Location','northwest')
+       'Location','northwest', ...
+       'FontSize', 14)
 grid off
-% xlim([1, l(end)])
 
 % Displacement bar
 subplot(1,2,1)
@@ -89,12 +89,13 @@ b = bar(N,R,0.6,'stacked');
 for i=1:length(N)
     b(i).FaceColor =  color_plot_b(i,:);
 end
-xlabel('\fontsize{16}Number of hoist turns')
-ylabel('\fontsize{16}Displacement over total lenght (%)')
+xlabel('\fontsize{20}Number of hoist turns')
+ylabel('\fontsize{20}Displacement over total lenght (%)')
 legend({'Single SMA Actuator','', ...
        'Parallel Hoist SMA Actuator (3 turns)', ...
        'Parallel Hoist SMA Actuator (n turns)'}, ...
-       'Location','northwest')
+       'Location','northwest', ...
+       'FontSize', 14)
 grid off
 
 %% Export to PDF 

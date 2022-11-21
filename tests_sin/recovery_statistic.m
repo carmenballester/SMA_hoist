@@ -23,7 +23,7 @@ total_displacement = 2.592;
 for i=1:length(f)
     for j=1:length(m)
         mean_values(i,j) = recovery_mean(f(i,:), m(j,:));
-        percent_values(i,j) = (total_displacement-mean_values(i,j))*100/total_displacement;
+        percent_values(i,j) = round((total_displacement-mean_values(i,j))*100/total_displacement, 2);
     end
 end
 

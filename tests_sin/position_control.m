@@ -36,13 +36,9 @@ t_nc = signal_1.t_nc;
 
 %% PLOTS
 % Define colors
-outer_space_crayola = [40, 61, 59]/255;
-skoleboff = [25, 114, 120]/255;
-morning_blue = [131, 168, 166]/255;
-champagne_pink = [237, 221, 212]/255;
-new_york_pink = [217, 145, 133]/255;
-international_orange_golden = [196, 69, 54]/255;
-liver_organ = [119, 46, 37]/255;
+light_sea_green = [32, 171, 161]/255;
+space_cadet = [37, 37, 65]/255;
+dark_orange = [255, 141, 26]/255;
 
 % Define figure properties
 fig_w = 25;
@@ -52,11 +48,9 @@ pdf_size = [fig_w+0.25 fig_h+0.25];
 
 % Plot position
 pos_plot = figure('Name','SMA Position Control','NumberTitle','off', 'Color', 'white', 'Units','centimeters', 'Position', fig_pos);
-plot(t, ref, 'Color', international_orange_golden, 'LineWidth', 1);
-% plot(t, ref, 'Color', burnt_sienna, 'LineWidth', 1);
+plot(t, ref, 'Color', space_cadet, 'LineWidth', 1);
 hold on 
-plot(t, pos, 'Color',skoleboff, 'LineWidth', 1);
-% plot(t, pos, 'Color', charcoal, 'LineWidth', 1);
+plot(t, pos, 'Color', dark_orange, 'LineWidth', 1);
 title('\fontsize{18} \bf SMA Position')
 xlabel('\fontsize{16}Time')
 ylabel('\fontsize{16}cm')
@@ -66,13 +60,10 @@ xlim([0, t(end)])
 
 % Plot uncontrolled position
 upos_plot = figure('Name','SMA Uncontrolled Positions','NumberTitle','off', 'Color', 'white', 'Units','centimeters', 'Position', fig_pos);
-plot(t, ref, 'Color', international_orange_golden, 'LineWidth', 1);
-% plot(t, ref, 'Color', burnt_sienna, 'LineWidth', 1);
+plot(t, ref, 'Color', space_cadet, 'LineWidth', 1);
 hold on 
-plot(t, pos, 'Color', skoleboff, 'LineWidth', 1);
-% plot(t, pos, 'Color', charcoal, 'LineWidth', 1);
-plot(t_nc, pos_nc, '.', 'Color', morning_blue, 'MarkerSize', 5);
-% plot(t_nc, pos_nc, '.', 'Color', persian_green, 'MarkerSize', 5);
+plot(t, pos, 'Color', dark_orange, 'LineWidth', 1);
+plot(t_nc, pos_nc, '.', 'Color', light_sea_green, 'MarkerSize', 5);
 title('\fontsize{18} \bf SMA Uncontrolled Positions')
 xlabel('\fontsize{16}Time')
 ylabel('\fontsize{16}cm')
@@ -82,10 +73,10 @@ xlim([0, t(end)])
 
 % Plot error
 err_plot = figure('Name','SMA Error','NumberTitle','off', 'Color', 'white', 'Units','centimeters', 'Position', fig_pos);
-plot(t, c, 'Color', morning_blue, 'LineWidth', 1);
+plot(t, c, 'Color', space_cadet, 'LineWidth', 1);
 hold on 
-plot(t, e*0.01, 'Color', new_york_pink, 'LineWidth', 1);
-plot(t, ep*0.01, 'Color', international_orange_golden, 'LineWidth', 0.5);
+plot(t, e*0.01, 'Color', light_sea_green, 'LineWidth', 1);
+plot(t, ep*0.01, 'Color', dark_orange, 'LineWidth', 1);
 title('\fontsize{18} \bf SMA Error')
 xlabel('\fontsize{16}Time')
 ylabel('\fontsize{16}Sensor Units')
@@ -95,7 +86,7 @@ xlim([0, t(end)])
 
 % Plot control signal
 control_plot = figure('Name','SMA Control Signal','NumberTitle','off', 'Color', 'white', 'Units','centimeters', 'Position', fig_pos);
-plot(t, c, 'Color', skoleboff, 'LineWidth', 1);
+plot(t, c, 'Color', space_cadet, 'LineWidth', 1);
 title('\fontsize{18} \bf PID Control Signal')
 xlabel('\fontsize{16}Time')
 ylabel('\fontsize{16}%PWM')
@@ -112,8 +103,6 @@ ylim([min(c) max(c)+10])
 % grid on
 % xlim([0, t(end)])
 % % ylim([0 5.5])
-
-pause;
 
 %% Export to PDF 
 export = input('Export? ');

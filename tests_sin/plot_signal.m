@@ -1,6 +1,6 @@
 clc, close all
 
-%% DEFINE VARIABLES
+%% DEFINE VARIABLESn   
 % Cutdown plots
 f = frec;
 
@@ -15,7 +15,7 @@ c = CONTROL.signals.values(1:find(t==max_time));
 int = INTENSIDAD.signals.values(1:find(t==max_time)) *5/4096;
 e = ERROR.signals.values(1:find(t==max_time));
 ep = ERROR_PONDERADO.signals.values(1:find(t==max_time));
-
+% ep = e./(1+exp(-0.05*(e+500)));
 % Get uncontrolled positions
 index = find(c == 0.0);
 pos_nc = pos(index);

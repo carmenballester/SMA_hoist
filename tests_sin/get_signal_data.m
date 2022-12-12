@@ -1,11 +1,18 @@
-function [signal] = get_signal_data()
+function signal = get_signal_data()
     % Get data parameters
     f_s = input('Frecuencia: ','s');
     m_s = input('Masa: ', 's');
     
     % Define paths
-    folder_path = 'G:\Mi unidad\SMA Carmen\polipasto_v2\tests_sin\test_8hilos_0.31d_30cm_3vueltas_54000us_good_control\';
-    file_name = strcat(f_s, 'f_', m_s, 'kg');
+    folder_path = 'G:\Mi unidad\SMA Carmen\polipasto_v2\tests_sin\data\test_8hilos_0.38d_30cm_3vueltas_50000us\';
+    
+    pid = input('PID? ');
+    if pid
+        file_name = strcat(f_s, 'f_', m_s, 'kg_pid');
+    else
+        file_name = strcat(f_s, 'f_', m_s, 'kg');
+    end
+
     file_path = strcat(folder_path, file_name, '.mat');
     
     % Load specified data
@@ -48,5 +55,4 @@ function [signal] = get_signal_data()
     signal.ep = ep;
     signal.pos_nc = pos_nc;
     signal.t_nc = t_nc;
-
 end

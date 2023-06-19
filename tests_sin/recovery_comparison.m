@@ -122,13 +122,9 @@ fit_val_2 = feval(fit_eq_2, t_2);
 
 %% PLOTS
 % Define colors
-outer_space_crayola = [40, 61, 59]/255;
-skoleboff = [25, 114, 120]/255;
-morning_blue = [131, 168, 166]/255;
-champagne_pink = [237, 221, 212]/255;
-new_york_pink = [217, 145, 133]/255;
-international_orange_golden = [196, 69, 54]/255;
-liver_organ = [119, 46, 37]/255;
+light_sea_green = [32, 171, 161]/255;
+space_cadet = [37, 37, 65]/255;
+dark_orange = [255, 141, 26]/255;
 
 % Define figure properties
 fig_w = 40;
@@ -141,11 +137,11 @@ rec_plot = figure('Name','SMA Recovery Curve','NumberTitle','off', 'Color', 'whi
 sgtitle('\fontsize{22} \bf SMA Recovery Curve')
 
 subplot(1,2,1);
-plot(t_1, ref_1, 'Color', champagne_pink, 'LineWidth', 0.5);
+plot(t_1, ref_1, 'Color', space_cadet, 'LineWidth', 0.5);
 hold on 
-plot(t_1, pos_1, 'Color', new_york_pink, 'LineWidth', 0.5);
-plot(min_t_1, min_pos_1,'.', 'Color', skoleboff);%'MarkerSize', 5);
-plot(t_1,fit_val_1,'Color', morning_blue,'LineWidth', 1);
+plot(t_1, pos_1, 'Color', dark_orange, 'LineWidth', 0.5);
+plot(min_t_1, min_pos_1,'.', 'Color', light_sea_green);%'MarkerSize', 5);
+plot(t_1,fit_val_1,'Color', light_sea_green,'LineWidth', 1);
 title(strcat('\fontsize{18}\rmf = ',signal_1.f_s,' rad/s; m = ', signal_1.m_s,' kg'))
 xlabel('\fontsize{16}Time (s)')
 ylabel('\fontsize{16}Position (cm)')
@@ -154,11 +150,11 @@ grid on
 xlim([0, t_1(end)])
 
 subplot(1,2,2);
-plot(t_2, ref_2, 'Color', champagne_pink, 'LineWidth', 0.5);
+plot(t_2, ref_2, 'Color', space_cadet, 'LineWidth', 0.5);
 hold on 
-plot(t_2, pos_2, 'Color', new_york_pink, 'LineWidth', 0.5);
-plot(min_t_2, min_pos_2,'.', 'Color', skoleboff);%'MarkerSize', 5);
-plot(t_2,fit_val_2,'Color', morning_blue,'LineWidth', 1);
+plot(t_2, pos_2, 'Color', dark_orange, 'LineWidth', 0.5);
+plot(min_t_2, min_pos_2,'.', 'Color', light_sea_green);%'MarkerSize', 5);
+plot(t_2,fit_val_2,'Color', light_sea_green,'LineWidth', 1);
 title(strcat('\fontsize{18}\rmf = ',signal_2.f_s,' rad/s; m = ', signal_2.m_s,' kg'))
 xlabel('\fontsize{16}Time (s)')
 ylabel('\fontsize{16}Position (cm)')
@@ -166,10 +162,9 @@ legend('Reference','Measured position','','Recovery fitting curve','Location','s
 grid on
 xlim([0, t_2(end)])
 
-pause;
 %% Export to PDF 
 export = input('Export? ');
-result_name = strcat(replace(signal_1.file_name, '.', ','), 'comparison');
+result_name = strcat(replace(signal_1.file_name, '.', ','), '_', replace(signal_2.file_name, '.', ','), 'comparison');
 
 if export
     % Recovery

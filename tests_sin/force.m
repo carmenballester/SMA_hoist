@@ -2,13 +2,12 @@
 clear, clc, close all
 
 % Define colors
-outer_space_crayola = [40, 61, 59]/255;
-skoleboff = [25, 114, 120]/255;
-morning_blue = [131, 168, 166]/255;
-champagne_pink = [237, 221, 212]/255;
-new_york_pink = [217, 145, 133]/255;
-international_orange_golden = [196, 69, 54]/255;
-liver_organ = [119, 46, 37]/255;
+space_cadet = [37, 37, 65]/255 ;
+light_sea_green = [32, 171, 161]/255;
+bisque = [255, 225, 194]/255;
+dark_orange = [255, 141, 26]/255;
+brick_red = [206, 54, 79]/255;
+ocean_blue = [73, 56, 181]/255;
 
 % Define physic variables
 N = 1:0.01:5; % Numero de vueltas del polipasto
@@ -28,75 +27,111 @@ color_plot_F = zeros(length(h), 3);
 %% GET DATA
 % Maximum Force
 for i=1:length(h) 
-    F_max(i,:) = 1.3*i./N;
-    F_max_d(i,:) = 1.3*i./N_d;
+    F_max(i,:) = 2.25*i./N;
+    F_max_d(i,:) = 2.25*i./N_d;
     if i == 1
-        color_plot_F(i,:) = skoleboff(1,:);
+        color_plot_F(i,:) = light_sea_green(1,:);
     elseif i == n
-        color_plot_F(i,:) = international_orange_golden(1,:);
+        color_plot_F(i,:) = dark_orange(1,:);
     else
-        color_plot_F(i,:) = champagne_pink(1,:);
+        color_plot_F(i,:) = bisque(1,:);
     end
 end
 
 % Minimum Force
 for i=1:length(h) 
-    F_rec(i,:) = 0.512*i.*N;
-    F_rec_d(i,:) = 0.512*i.*N_d;
+    F_rec(i,:) = 0.9*i.*N;
+    F_rec_d(i,:) = 0.9*i.*N_d;
     if i == 1
-        color_plot_F(i,:) = skoleboff(1,:);
+        color_plot_F(i,:) = light_sea_green(1,:);
     elseif i == n
-        color_plot_F(i,:) = international_orange_golden(1,:);
+        color_plot_F(i,:) = dark_orange(1,:);
     else
-        color_plot_F(i,:) = champagne_pink(1,:);
+        color_plot_F(i,:) = bisque(1,:);
     end
 end
 
-%% PLOTS 
-fig_w = 37.5;
-fig_h = 15;
-fig_pos = [0 0 fig_w fig_h];
-pdf_size = [fig_w-6 fig_h];
+% F_max = normr(F_max);
+% F_max_d = normr(F_max_d);
 
-force_plot = figure('Name','Paraller Hoist SMA Actuator Forces','NumberTitle','off', 'Color', 'white', 'Units','centimeters', 'Position', fig_pos);
-sgtitle('\fontsize{22} \bf Load and hosit system relation')
+F_dif = - F_rec + F_max;
+F_dif_d = - F_rec_d + F_max_d;
+
+%% PLOTS 
+fig_w = 20;
+fig_h = 30;
+fig_pos = [0 0 fig_w fig_h];
+pdf_size = [fig_w fig_h-9];
 
 % Force max
-force_max_sb = subplot(1,2,1);
-plot(N,F_max)
-% hold on
-% plot(N_d,F_max_d,'.')
+force_max_plot = figure('Name','Paraller Hoist SMA Actuator Forces','NumberTitle','off', 'Color', 'white', 'Units','centimeters', 'Position', fig_pos);
+plot(N,F_max,'--','LineWidth',1)
+hold on
+plot(N_d,F_max_d,'.','MarkerSize',35);
 colororder(color_plot_F)
-xlabel('\fontsize{20}Number of hoist turns')
-ylabel('\fontsize{20}Heating pull force (kg)')
-legend('Single SMA Actuator','','','','','','', ...
+xlabel('\fontsize{30}Number of hoist turns')
+ylabel('\fontsize{30}Heating pull force (kg)')
+legend('','','','','','','','','Theorical curves','','','','', ...
+       'Single SMA Actuator','','','','','','', ...
        'Parallel Hoist SMA Actuator (8 wires)', ...
        'Parallel Hoist SMA Actuator (h wires)', ...
        'Location','northwest', ...
-        'FontSize', 14)
+        'FontSize', 20)
 grid off
 xlim([1, N(end)])
+set(gca,'fontsize', 25) 
+grid on
 
 % Force rec
-force_rec_sb = subplot(1,2,2);
-plot(N,F_rec)
+force_rec_plot = figure('Name','Paraller Hoist SMA Actuator Forces','NumberTitle','off', 'Color', 'white', 'Units','centimeters', 'Position', fig_pos);
+plot(N,F_rec, '--', 'LineWidth',1)
+hold on
+plot(N_d,F_rec_d,'.','MarkerSize',35);
 colororder(color_plot_F)
-xlabel('\fontsize{20}Number of hoist turns')
-ylabel('\fontsize{20}Cooling deformation force (kg)')
-legend('Single SMA Actuator','','','','','','', ...
-    'Parallel Hoist SMA Actuator (8 wires)', ...
-    'Parallel Hoist SMA Actuator (h wires)', ...
-    'Location','northwest', ...
-    'FontSize', 14)
+xlabel('\fontsize{30}Number of hoist turns')
+ylabel('\fontsize{30}Cooling deformation force (kg)')
+legend('','','','','','','','','Theorical curves','','','','', ...
+       'Single SMA Actuator','','','','','','', ...
+       'Parallel Hoist SMA Actuator (8 wires)', ...
+       'Parallel Hoist SMA Actuator (h wires)', ...
+       'Location','northwest', ...
+        'FontSize', 20)
 grid off
 xlim([1, N(end)])
+set(gca,'fontsize', 25) 
+grid on
+
+% Force rec
+force_dif_plot = figure('Name','Paraller Hoist SMA Actuator Forces','NumberTitle','off', 'Color', 'white', 'Units','centimeters', 'Position', fig_pos);
+plot(N,F_dif, '--', 'LineWidth',1)
+hold on
+plot(N_d,F_dif_d,'.','MarkerSize',35);
+colororder(color_plot_F)
+xlabel('\fontsize{30}Number of hoist turns')
+ylabel('\fontsize{30}Force advantage (kg)')
+legend('','','','','','','','','Theorical curves','','','','', ...
+       'Single SMA Actuator','','','','','','', ...
+       'Parallel Hoist SMA Actuator (8 wires)', ...
+       'Parallel Hoist SMA Actuator (h wires)', ...
+       'Location','southwest', ...
+        'FontSize', 20)
+grid off
+xlim([1, N(end)])
+set(gca,'fontsize', 25) 
+grid on
 
 %% Export to PDF 
 export = input('Export? ');
-result_name = 'force_comparison';
+result_name = 'force_comp';
 
 if export
-    set(force_plot,'PaperSize',pdf_size);
-    print(force_plot, result_name, '-dpdf');
+    set(force_max_plot,'PaperSize',pdf_size);
+    print(force_max_plot, strcat(result_name, '_max'), '-dpdf');
+
+    set(force_rec_plot,'PaperSize',pdf_size);
+    print(force_rec_plot, strcat(result_name, '_rec'), '-dpdf');
+
+    set(force_dif_plot,'PaperSize',pdf_size);
+    print(force_dif_plot, strcat(result_name, '_dif'), '-dpdf');
     
 end

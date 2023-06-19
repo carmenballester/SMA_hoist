@@ -1,34 +1,25 @@
-function signal = get_signal_data()
+function signal = get_signal_data(options, max_time)
     % Get data parameters
     f_s = input('Frecuencia: ','s');
     m_s = input('Masa: ', 's');
     
     % Define paths
-    folder_path = 'G:\Mi unidad\SMA Carmen\polipasto_v2\tests_sin\data\test_8hilos_0.38d_30cm_3vueltas_50000us\';
-    
-    pid = input('PID? ');
-    if pid
-        file_name = strcat(f_s, 'f_', m_s, 'kg_pid');
-    else
-        file_name = strcat(f_s, 'f_', m_s, 'kg');
-    end
-
-    file_path = strcat(folder_path, file_name, '.mat');
+    folder_path = 'G:\Mi unidad\Research\SMA_actuator\hoist_system\hoist_v2\tests_sin\data\test_8hilos_0.38d_30cm_3vueltas_50000us\';
+    file_name = strcat(f_s, 'f_', m_s, 'kg', options);
+    file_path = strcat(folder_path, file_name,'.mat');
     
     % Load specified data
     load(file_path);
     
-    % Define variables
-    max_time = 600.00;
-    
+    % Define variables    
     t = single(POSICION.time);
     t = single(POSICION.time(1:find(t==max_time)));
     pos = POSICION.signals.values(1:find(t==max_time))*0.48*10^-4;
     ref = REFERENCIA.signals.values(1:find(t==max_time))*0.48*10^-4;
     c = CONTROL.signals.values(1:find(t==max_time));
     int = INTENSIDAD.signals.values(1:find(t==max_time)) *5/4096;
-    e = ERROR.signals.values(1:find(t==max_time));
-    ep = ERROR_PONDERADO.signals.values(1:find(t==max_time));
+    e = ERROR.signals.values(1:find(t==max_time))*0.48*10^-4;
+    ep = ERROR_PONDERADO.signals.values(1:find(t==max_time))*0.48*10^-4;
     
     % t = single(Posicion.time);
     % pos = Posicion.signals.values;
